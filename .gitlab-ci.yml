@@ -1,0 +1,18 @@
+image: ruby:2.2
+
+before_script:
+  - bundle install --without developement kitchen_cloud kitchen_vagrant kitchen_common
+
+stages:
+  - test
+
+job1:
+  stage: test
+  script:
+    - bundle exec foodcritic -P -f all .
+    - bundle exec rubocop
+    - bundle exec rspec
+  only:
+    - master
+  tags:
+    - docker
