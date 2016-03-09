@@ -106,6 +106,7 @@ default['mariadb']['galera']['cluster_nodes']      = []
 # Replication default configuration
 #
 default['mariadb']['replication']['server_id']        = ''
+default['mariadb']['replication']['disable_log_bin']  = false
 default['mariadb']['replication']['log_bin']          = \
   '/var/log/mysql/mariadb-bin'
 default['mariadb']['replication']['log_bin_index']    = \

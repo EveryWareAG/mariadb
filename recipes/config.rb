@@ -82,7 +82,12 @@ end
 
 replication_opts = {}
 
-replication_opts['log_bin'] = node['mariadb']['replication']['log_bin']
+unless node['mariadb']['replication']['disable_log_bin']
+  replication_opts['log_bin'] = node['mariadb']['replication']['log_bin']
+else
+  replication_opts['comment1'] = '# binlogs are disabled'
+  replication_opts['log_bin'] = '#log_bin'
+end
 replication_opts['sync_binlog'] = \
   node['mariadb']['replication']['sync_binlog']
 replication_opts['log_bin_index'] = \
