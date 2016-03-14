@@ -22,6 +22,7 @@ template '/root/.my.cnf' do
   owner 'root'
   group 'root'
   mode '0600'
+  sensitive true
   only_if { node['mariadb']['root_my_cnf'] }
 end
 
