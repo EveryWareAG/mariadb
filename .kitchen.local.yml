@@ -1,0 +1,5 @@
+driver_config:
+  http_proxy: <%= ENV['http_proxy'] %>
+  https_proxy: <%= ENV['https_proxy'] %>
+  require_chef_omnibus: 12.5.1
+
