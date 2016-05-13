@@ -20,6 +20,7 @@
 if Chef::Config[:solo]
   Chef::Log.warn('This recipe uses search. Chef Solo does not support search.')
 else
+  if data_bag(:mariadb) 
   exist_data_bag_mariadb_root = search(:mariadb, 'id:user_root').first
 
   unless exist_data_bag_mariadb_root.nil?
@@ -33,6 +34,7 @@ else
     data_bag_mariadb_debian = data_bag_item('mariadb', 'user_debian')
     node.override['mariadb']['debian']['password'] = data_bag_mariadb_debian['password']
   end
+ end
 end
 
 include_recipe "#{cookbook_name}::server"
